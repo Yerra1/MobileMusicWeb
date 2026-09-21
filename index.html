@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#171719" />
+  <title>Music UI — Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="desktop-nav">
+      <div class="brand">MUSIC</div>
+      <button class="side-link active" data-page="home">⌂ <span>Home</span></button>
+      <button class="side-link" data-page="search">⌕ <span>Search</span></button>
+      <button class="side-link" data-page="playing">♫ <span>Now Playing</span></button>
+    </aside>
+
+    <main class="app">
+      <section id="home" class="page page-home active">
+        <div class="page-title">HOME</div>
+        <div class="search-row">
+          <div class="search-box" data-open-search><span>⌕</span><input id="homeSearch" type="text" placeholder="Search" /></div>
+          <button class="round-btn" aria-label="Profile">●</button>
+        </div>
+        <h1>HITS</h1>
+        <div class="horizontal-cards" id="hits"></div>
+        <h2>New for you</h2>
+        <div class="horizontal-cards" id="newForYou"></div>
+        <h2>Friends pack</h2>
+        <div class="horizontal-cards" id="friends"></div>
+        <div class="mobile-bottom fixed-bottom">
+          <button class="selected" data-page="home">⌂</button>
+          <button data-page="playing">♫</button>
+          <button data-page="search">⌕</button>
+        </div>
+      </section>
+
+      <section id="playing" class="page page-playing">
+        <div class="page-title">NOW PLAYING</div>
+        <div class="playing-top">
+          <button class="back-btn" data-page="home">⌄</button>
+          <div class="wave">▁▂▃▅▇▅▃▂▁</div>
+          <button class="more-btn">•••</button>
+        </div>
+        <div class="hero-art" id="heroArt"></div>
+        <div class="track-info">
+          <div><div class="track-title" id="playerTitle">Name of the Music</div><div class="track-artist" id="playerArtist">Artist & Beatmaker</div></div>
+          <div class="mini-wave">▁▂▃▅▇▅▃▂</div>
+        </div>
+        <div class="progress"><input id="progress" type="range" min="0" max="100" value="35" /></div>
+        <div class="transport">
+          <button id="prevBtn">◀|</button><button id="playBtn" class="play-main">▶</button><button id="nextBtn">|▶</button>
+        </div>
+        <div class="stem-controls">
+          <button class="stem active" data-stem="vocals"><b>♩</b><span>Vocals</span></button>
+          <button class="stem active" data-stem="melody"><b>♫</b><span>Melody</span></button>
+          <button class="stem" data-stem="drums"><b>♬</b><span>Drums</span></button>
+          <button class="stem" data-stem="bass"><b>♩</b><span>Bass</span></button>
+        </div>
+        <div class="mobile-bottom fixed-bottom">
+          <button data-page="home">⌂</button><button class="selected" data-page="playing">♫</button><button data-page="search">⌕</button>
+        </div>
+      </section>
+
+      <section id="search" class="page page-search">
+        <div class="page-title">SEARCH</div>
+        <div class="search-row">
+          <div class="search-box"><span>⌕</span><input id="searchInput" type="text" placeholder="Search Artists, Songs, Lyrics..." /></div>
+          <button class="round-btn" id="searchSubmit">⌕</button>
+        </div>
+        <h1>Top Results</h1>
+        <div id="searchResults" class="search-results"></div>
+        <h2>Playlists</h2>
+        <div class="playlist-list" id="playlists"></div>
+        <div class="mobile-bottom fixed-bottom">
+          <button data-page="home">⌂</button><button data-page="playing">♫</button><button class="selected" data-page="search">⌕</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
