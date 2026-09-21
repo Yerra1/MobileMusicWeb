@@ -1,78 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#08090d">
-  <title>Now Playing — Mobile Music</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#08090d"><title>Now Playing — Mobile Music</title><link rel="stylesheet" href="style.css"></head>
 <body data-page="playing">
-  <main class="app">
-    <section class="page page-playing active">
-      <div class="page-title">NOW PLAYING</div>
-
-      <div class="playing-top">
-        <a class="back-btn" href="index.html" aria-label="Back">
-          <svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg>
-        </a>
-        <div class="wave" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-          <span></span><span></span><span></span><span></span>
-        </div>
-        <button class="more-btn" aria-label="More"><i></i><i></i><i></i></button>
-      </div>
-
-      <div class="hero-art c4" id="heroArt" aria-label="Album artwork"></div>
-
-      <div class="track-info">
-        <div>
-          <div class="track-title" id="playerTitle">Name of the Music</div>
-          <div class="track-artist" id="playerArtist">Artist &amp; Beatmaker</div>
-        </div>
-        <div class="mini-wave" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-        </div>
-      </div>
-
-      <div class="progress">
-        <input id="progress" type="range" min="0" max="100" value="35" aria-label="Track progress">
-      </div>
-
-      <div class="transport">
-        <button id="prevBtn" aria-label="Previous track">
-          <svg viewBox="0 0 32 32"><path d="M7 7v18M25 8 12 16l13 8z"/></svg>
-        </button>
-        <button id="playBtn" class="play-main" aria-label="Play">
-          <svg class="play-icon" viewBox="0 0 32 32"><path d="m12 7 13 9-13 9z"/></svg>
-          <svg class="pause-icon" viewBox="0 0 32 32"><path d="M10 7v18M22 7v18"/></svg>
-        </button>
-        <button id="nextBtn" aria-label="Next track">
-          <svg viewBox="0 0 32 32"><path d="M25 7v18M7 8l13 8L7 24z"/></svg>
-        </button>
-      </div>
-
-      <div class="stem-controls">
-        <button class="stem active" data-stem="vocals"><span class="stem-icon">V</span><span>Vocals</span></button>
-        <button class="stem active" data-stem="melody"><span class="stem-icon">M</span><span>Melody</span></button>
-        <button class="stem" data-stem="drums"><span class="stem-icon">D</span><span>Drums</span></button>
-        <button class="stem" data-stem="bass"><span class="stem-icon">B</span><span>Bass</span></button>
-      </div>
-    </section>
-  </main>
-
-  <nav class="mobile-bottom fixed-bottom" aria-label="Main navigation">
-    <a href="index.html" data-page-link="home" aria-label="Home">
-      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
-    </a>
-    <a href="player.html" data-page-link="playing" aria-label="Now Playing">
-      <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg>
-    </a>
-    <a href="search.html" data-page-link="search" aria-label="Search">
-      <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg>
-    </a>
-  </nav>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<main class="app"><section class="page page-playing active">
+<div class="page-title">NOW PLAYING</div>
+<div class="playing-top"><a class="back-btn" href="index.html" aria-label="Back"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></a><div class="wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><button class="more-btn" aria-label="More"><i></i><i></i><i></i></button></div>
+<div class="hero-art c4" id="heroArt" aria-label="Album artwork"></div>
+<div class="track-info"><div><div class="track-title" id="playerTitle">Name of the Music</div><div class="track-artist" id="playerArtist">Artist &amp; Beatmaker</div></div><div class="mini-wave" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+<div class="progress"><input id="progress" type="range" min="0" max="100" value="35" aria-label="Track progress"></div>
+<div class="transport"><button id="prevBtn" aria-label="Previous track"><svg viewBox="0 0 32 32"><path d="M7 7v18M25 8 12 16l13 8z"/></svg></button><button id="playBtn" class="play-main" aria-label="Play"><svg class="play-icon" viewBox="0 0 32 32"><path d="m12 7 13 9-13 9z"/></svg><svg class="pause-icon" viewBox="0 0 32 32"><path d="M10 7v18M22 7v18"/></svg></button><button id="nextBtn" aria-label="Next track"><svg viewBox="0 0 32 32"><path d="M25 7v18M7 8l13 8L7 24z"/></svg></button></div>
+<div class="stem-controls"><button class="stem active" data-stem="vocals"><span class="stem-icon">V</span><span>Vocals</span></button><button class="stem active" data-stem="melody"><span class="stem-icon">M</span><span>Melody</span></button><button class="stem" data-stem="drums"><span class="stem-icon">D</span><span>Drums</span></button><button class="stem" data-stem="bass"><span class="stem-icon">B</span><span>Bass</span></button></div>
+</section></main>
+<nav class="mobile-bottom fixed-bottom" aria-label="Main navigation">
+<a href="index.html" data-page-link="home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+<a href="library.html" data-page-link="library" aria-label="Library"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13H4z"/><path d="M8 5.5v13M12 5.5v13"/></svg><span>Library</span></a>
+<a class="selected" href="player.html" data-page-link="playing" aria-label="Now Playing"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg><span>Playing</span></a>
+<a href="search.html" data-page-link="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search</span></a>
+</nav><script src="app.js"></script></body></html>
