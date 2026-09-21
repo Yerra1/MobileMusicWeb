@@ -17,3 +17,10 @@ $$('[data-open-search]').forEach(e=>e.addEventListener('click',()=>navigate('sea
 $('#homeSearch').addEventListener('focus',()=>navigate('search'));$('#playBtn').addEventListener('click',togglePlay);$('#nextBtn').addEventListener('click',()=>nextTrack(1));$('#prevBtn').addEventListener('click',()=>nextTrack(-1));$('#searchInput').addEventListener('input',filterSearch);$('#searchSubmit').addEventListener('click',filterSearch);
 $$('.stem').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('active')));
 document.addEventListener('keydown',e=>{if(e.code==='Space'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();togglePlay()}if(e.code==='ArrowRight')nextTrack(1);if(e.code==='ArrowLeft')nextTrack(-1)});
+
+$$('.section-arrow').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const box=document.getElementById(btn.dataset.section);
+    if(box) box.scrollBy({left:240,behavior:'smooth'});
+  });
+});
