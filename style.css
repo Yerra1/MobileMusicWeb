@@ -220,3 +220,176 @@ h1{font-size:29px}h2{font-size:27px}
     padding-bottom:8px;
   }
 }
+
+/* === Micro-interactions === */
+html{scroll-behavior:smooth}
+body{touch-action:manipulation}
+button,a,.music-card,.search-box,.stem,.playlist,.section-arrow{ -webkit-tap-highlight-color:transparent; }
+
+@keyframes softPop{
+  0%{transform:scale(.96);opacity:.65}
+  100%{transform:scale(1);opacity:1}
+}
+@keyframes rippleOut{
+  from{transform:translate(-50%,-50%) scale(.2);opacity:.42}
+  to{transform:translate(-50%,-50%) scale(2.3);opacity:0}
+}
+@keyframes navBreathe{
+  0%,100%{box-shadow:inset 0 1px 5px rgba(255,255,255,.11)}
+  50%{box-shadow:inset 0 1px 7px rgba(255,255,255,.18),0 0 18px rgba(145,150,175,.07)}
+}
+@keyframes playPulse{
+  0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(157,183,210,0),inset 0 1px 0 rgba(255,255,255,.12)}
+  50%{transform:scale(1.045);box-shadow:0 0 0 7px rgba(157,183,210,.025),0 8px 26px rgba(82,111,145,.13),inset 0 1px 0 rgba(255,255,255,.18)}
+}
+@keyframes stemOn{
+  0%{transform:scale(.96)}
+  65%{transform:scale(1.025)}
+  100%{transform:scale(1)}
+}
+@keyframes waveFloat{
+  0%,100%{transform:scaleY(.78);opacity:.72}
+  50%{transform:scaleY(1.08);opacity:1}
+}
+@keyframes resultIn{
+  from{opacity:0;transform:translateY(7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes shimmer{
+  0%{transform:translateX(-130%) skewX(-18deg);opacity:0}
+  18%{opacity:.25}
+  55%{opacity:.08}
+  100%{transform:translateX(190%) skewX(-18deg);opacity:0}
+}
+
+.ripple{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:5000;
+  background:rgba(255,255,255,.34);
+  animation:rippleOut .48s cubic-bezier(.2,.8,.3,1) forwards;
+}
+
+.search-box{
+  transition:transform .18s ease,border-color .18s ease,box-shadow .22s ease,background .22s ease;
+}
+.search-box:active{transform:scale(.992)}
+.search-box:focus-within{transform:translateY(-1px)}
+
+.round-btn,.section-arrow,.transport button,.more-btn,.back-btn{
+  transition:transform .16s ease,filter .16s ease,background .16s ease;
+}
+.round-btn:hover,.section-arrow:hover{filter:brightness(1.08)}
+.round-btn:active,.section-arrow:active,.transport button:active,.more-btn:active,.back-btn:active{transform:scale(.9)}
+
+.section-arrow:active{transform:translateX(2px) scale(.9)}
+
+.music-card{
+  transition:transform .2s cubic-bezier(.2,.75,.25,1),opacity .2s ease;
+}
+.music-card:active{transform:scale(.955) translateY(1px)}
+.music-card .album-art{
+  transition:transform .24s cubic-bezier(.2,.75,.25,1),box-shadow .24s ease,filter .2s ease;
+}
+.music-card:active .album-art{
+  transform:scale(.965);
+  filter:brightness(.95);
+}
+.album-art::marker{display:none}
+
+.mobile-bottom a{
+  transition:transform .18s cubic-bezier(.2,.8,.25,1),color .18s ease,background .18s ease;
+}
+.mobile-bottom a:active{transform:scale(.86)}
+.mobile-bottom a.selected{animation:navBreathe 2.8s ease-in-out infinite}
+
+.result{
+  transition:transform .18s ease,background .18s ease,opacity .18s ease;
+}
+.result:active{transform:scale(.985);background:rgba(255,255,255,.08)}
+.result:nth-child(1){animation:resultIn .32s .03s both ease}
+.result:nth-child(2){animation:resultIn .32s .07s both ease}
+.result:nth-child(3){animation:resultIn .32s .11s both ease}
+.result:nth-child(4){animation:resultIn .32s .15s both ease}
+.result:nth-child(5){animation:resultIn .32s .19s both ease}
+.result:nth-child(6){animation:resultIn .32s .23s both ease}
+.result:nth-child(7){animation:resultIn .32s .27s both ease}
+.result:nth-child(8){animation:resultIn .32s .31s both ease}
+
+.playlist{
+  transition:transform .18s ease,background .18s ease;
+}
+.playlist:active{transform:scale(.985);background:rgba(255,255,255,.07)}
+
+.play-main{
+  transition:transform .18s cubic-bezier(.2,.8,.25,1),box-shadow .22s ease,background .18s ease!important;
+}
+.play-main:active{transform:scale(.91)}
+.play-main.is-playing{
+  animation:playPulse 1.8s ease-in-out infinite;
+}
+.play-main.is-playing .pause-icon{
+  animation:softPop .18s ease both;
+}
+.play-main:not(.is-playing) .play-icon{
+  animation:softPop .18s ease both;
+}
+
+.wave span,.mini-wave span{
+  transform-origin:center;
+  animation:waveFloat 1.25s ease-in-out infinite;
+}
+.wave span:nth-child(2){animation-delay:.08s}
+.wave span:nth-child(3){animation-delay:.16s}
+.wave span:nth-child(4){animation-delay:.24s}
+.wave span:nth-child(5){animation-delay:.32s}
+.wave span:nth-child(6){animation-delay:.40s}
+.wave span:nth-child(7){animation-delay:.48s}
+.wave span:nth-child(8){animation-delay:.56s}
+.wave span:nth-child(9){animation-delay:.64s}
+.mini-wave span:nth-child(2){animation-delay:.08s}
+.mini-wave span:nth-child(3){animation-delay:.16s}
+.mini-wave span:nth-child(4){animation-delay:.24s}
+.mini-wave span:nth-child(5){animation-delay:.32s}
+.mini-wave span:nth-child(6){animation-delay:.40s}
+.mini-wave span:nth-child(7){animation-delay:.48s}
+
+.stem{
+  transition:transform .18s cubic-bezier(.2,.8,.25,1),background .22s ease,box-shadow .22s ease,color .18s ease;
+}
+.stem:active{transform:scale(.94)}
+.stem.active{animation:stemOn .24s ease both}
+.stem:hover{filter:brightness(1.045)}
+
+.hero-art{
+  overflow:hidden;
+}
+.hero-art::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  width:45%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.10),transparent);
+  transform:translateX(-130%) skewX(-18deg);
+  animation:shimmer 5.8s 1.2s ease-in-out infinite;
+  pointer-events:none;
+}
+
+body[data-page="playing"] .hero-art{
+  transition:transform .35s cubic-bezier(.2,.8,.25,1),box-shadow .3s ease;
+}
+body[data-page="playing"] .hero-art:active{transform:scale(.992)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.001ms!important;
+  }
+}
