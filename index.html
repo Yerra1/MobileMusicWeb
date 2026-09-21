@@ -11,53 +11,27 @@
   <main class="app">
     <section class="page page-home active">
       <div class="page-title">HOME</div>
-
       <div class="search-row">
         <a class="search-box" href="search.html" aria-label="Open search">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg>
-          <span>Search</span>
+          <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search</span>
         </a>
-        <button class="round-btn" aria-label="Profile">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"/></svg>
-        </button>
+        <button class="round-btn" aria-label="Profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"/></svg></button>
       </div>
-
-      <div class="home-accent-lines" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-      </div>
-
-      <div class="section-heading">
-        <h1>HITS</h1>
-        <button class="section-arrow" data-section="hits" aria-label="Show more">›</button>
-      </div>
+      <div class="home-accent-lines" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="section-heading"><h1>HITS</h1><button class="section-arrow" data-section="hits" aria-label="Show more">›</button></div>
       <div class="horizontal-cards" id="hits"></div>
-
-      <div class="section-heading">
-        <h2>New for you</h2>
-        <button class="section-arrow" data-section="newForYou" aria-label="Show more">›</button>
-      </div>
+      <div class="section-heading"><h2>New for you</h2><button class="section-arrow" data-section="newForYou" aria-label="Show more">›</button></div>
       <div class="horizontal-cards" id="newForYou"></div>
-
-      <div class="section-heading">
-        <h2>Friends pack</h2>
-        <button class="section-arrow" data-section="friends" aria-label="Show more">›</button>
-      </div>
+      <div class="section-heading"><h2>Friends pack</h2><button class="section-arrow" data-section="friends" aria-label="Show more">›</button></div>
       <div class="horizontal-cards" id="friends"></div>
     </section>
   </main>
-
   <nav class="mobile-bottom fixed-bottom" aria-label="Main navigation">
-    <a class="selected" href="index.html" data-page-link="home" aria-label="Home">
-      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
-    </a>
-    <a href="player.html" data-page-link="playing" aria-label="Now Playing">
-      <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg>
-    </a>
-    <a href="search.html" data-page-link="search" aria-label="Search">
-      <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg>
-    </a>
+    <a class="selected" href="index.html" data-page-link="home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+    <a href="library.html" data-page-link="library" aria-label="Library"><svg viewBox="0 0 24 24"><path d="M4 5.5h16v13H4z"/><path d="M8 5.5v13M12 5.5v13"/></svg><span>Library</span></a>
+    <a href="player.html" data-page-link="playing" aria-label="Now Playing"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg><span>Playing</span></a>
+    <a href="search.html" data-page-link="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search</span></a>
   </nav>
-
   <script src="app.js"></script>
 </body>
 </html>
