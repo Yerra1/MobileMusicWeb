@@ -164,3 +164,35 @@ document.addEventListener("keydown", e => {
   if (e.code === "ArrowRight") stepTrack(1);
   if (e.code === "ArrowLeft") stepTrack(-1);
 });
+
+/* Micro interaction helpers */
+document.addEventListener("pointerdown", e=>{
+  const target=e.target.closest("button, a");
+  if(!target) return;
+  const tag=target.getBoundingClientRect();
+  if(tag.width<1 || tag.height<1) return;
+  const ripple=document.createElement("span");
+  ripple.className="ripple";
+  ripple.style.left=e.clientX+"px";
+  ripple.style.top=e.clientY+"px";
+  document.body.appendChild(ripple);
+  window.setTimeout(()=>ripple.remove(),520);
+});
+
+$$(".section-arrow").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    btn.animate(
+      [{transform:"translateX(0) scale(1)"},{transform:"translateX(2px) scale(.88)"},{transform:"translateX(0) scale(1)"}],
+      {duration:260,easing:"cubic-bezier(.2,.8,.25,1)"}
+    );
+  });
+});
+
+$$(".stem").forEach(button=>{
+  button.addEventListener("click",()=>{
+    button.animate(
+      [{transform:"scale(.94)"},{transform:"scale(1.025)"},{transform:"scale(1)"}],
+      {duration:230,easing:"cubic-bezier(.2,.8,.25,1)"}
+    );
+  });
+});
