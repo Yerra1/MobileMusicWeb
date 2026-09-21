@@ -1,90 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#171719" />
-  <title>Music UI — Prototype</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090d">
+  <title>Home — Mobile Music</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="home">
-  <div class="app-shell">
-    <aside class="desktop-nav">
-      <div class="brand">MUSIC</div>
-      <button class="side-link active" data-page="home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
-      <button class="side-link" data-page="search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search</span></button>
-      <button class="side-link" data-page="playing"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg><span>Now Playing</span></button>
-    </aside>
+  <main class="app">
+    <section class="page page-home active">
+      <div class="page-title">HOME</div>
 
-    <main class="app">
-      <section id="home" class="page page-home active">
-        <div class="page-title">HOME</div>
-        <div class="search-row">
-          <div class="search-box" data-open-search><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><input id="homeSearch" type="text" placeholder="Search" /></div>
-          <button class="round-btn" aria-label="Profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"/></svg></button>
-        </div>
-        <div class="section-heading"><h1>HITS</h1><button class="section-arrow" data-section="hits" aria-label="Show more">›</button></div>
-        <div class="horizontal-cards" id="hits"></div>
-        <div class="section-heading"><h2>New for you</h2><button class="section-arrow" data-section="newForYou" aria-label="Show more">›</button></div>
-        <div class="horizontal-cards" id="newForYou"></div>
-        <div class="section-heading"><h2>Friends pack</h2><button class="section-arrow" data-section="friends" aria-label="Show more">›</button></div>
-        <div class="horizontal-cards" id="friends"></div>
-        <div class="mobile-bottom fixed-bottom">
-          <button class="selected" data-page="home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
-          <button data-page="playing" aria-label="Now Playing"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg></button>
-          <button data-page="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg></button>
-        </div>
-      </section>
+      <div class="search-row">
+        <a class="search-box" href="search.html" aria-label="Open search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg>
+          <span>Search</span>
+        </a>
+        <button class="round-btn" aria-label="Profile">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"/></svg>
+        </button>
+      </div>
 
-      <section id="playing" class="page page-playing">
-        <div class="page-title">NOW PLAYING</div>
-        <div class="playing-top">
-          <button class="back-btn" data-page="home" aria-label="Back"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></button>
-          <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <button class="more-btn" aria-label="More"><i></i><i></i><i></i></button>
-        </div>
-        <div class="hero-art" id="heroArt"></div>
-        <div class="track-info">
-          <div><div class="track-title" id="playerTitle">Name of the Music</div><div class="track-artist" id="playerArtist">Artist & Beatmaker</div></div>
-          <div class="mini-wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        </div>
-        <div class="progress"><input id="progress" type="range" min="0" max="100" value="35" /></div>
-        <div class="transport">
-          <button id="prevBtn" aria-label="Previous"><svg viewBox="0 0 32 32"><path d="M7 7v18M25 8 12 16l13 8z"/></svg></button>
-          <button id="playBtn" class="play-main" aria-label="Play"><svg class="play-icon" viewBox="0 0 32 32"><path d="m12 7 13 9-13 9z"/></svg><svg class="pause-icon" viewBox="0 0 32 32"><path d="M10 7v18M22 7v18"/></svg></button>
-          <button id="nextBtn" aria-label="Next"><svg viewBox="0 0 32 32"><path d="M25 7v18M7 8l13 8L7 24z"/></svg></button>
-        </div>
-        <div class="stem-controls">
-          <button class="stem active" data-stem="vocals"><svg viewBox="0 0 24 24"><path d="M9 18V6l8-2v11"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="14.5" cy="16" r="3.5"/></svg><span>Vocals</span></button>
-          <button class="stem active" data-stem="melody"><svg viewBox="0 0 24 24"><path d="M9 18V6l8-2v11"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="14.5" cy="16" r="3.5"/></svg><span>Melody</span></button>
-          <button class="stem" data-stem="drums"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="8" rx="7" ry="3"/><path d="M5 8v8c0 2 14 2 14 0V8M8 13c2 1 6 1 8 0"/></svg><span>Drums</span></button>
-          <button class="stem" data-stem="bass"><svg viewBox="0 0 24 24"><path d="M9 18V6l8-2v11"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="14.5" cy="16" r="3.5"/></svg><span>Bass</span></button>
-        </div>
-        <div class="mobile-bottom fixed-bottom">
-          <button data-page="home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
-          <button class="selected" data-page="playing" aria-label="Now Playing"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg></button>
-          <button data-page="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg></button>
-        </div>
-      </section>
+      <div class="section-heading">
+        <h1>HITS</h1>
+        <button class="section-arrow" data-section="hits" aria-label="Show more">›</button>
+      </div>
+      <div class="horizontal-cards" id="hits"></div>
 
-      <section id="search" class="page page-search">
-        <div class="page-title">SEARCH</div>
-        <div class="search-row">
-          <div class="search-box"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg><input id="searchInput" type="text" placeholder="Search Artists, Songs, Lyrics..." /></div>
-          <button class="round-btn" id="searchSubmit" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg></button>
-        </div>
-        <h1>Top Results</h1>
-        <div id="searchResults" class="search-results"></div>
-        <h2>Playlists</h2>
-        <div class="playlist-list" id="playlists"></div>
-        <div class="mobile-bottom fixed-bottom">
-          <button data-page="home" aria-label="Home"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></button>
-          <button data-page="playing" aria-label="Now Playing"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg></button>
-          <button class="selected" data-page="search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg></button>
-        </div>
-      </section>
-    </main>
-  </div>
+      <div class="section-heading">
+        <h2>New for you</h2>
+        <button class="section-arrow" data-section="newForYou" aria-label="Show more">›</button>
+      </div>
+      <div class="horizontal-cards" id="newForYou"></div>
+
+      <div class="section-heading">
+        <h2>Friends pack</h2>
+        <button class="section-arrow" data-section="friends" aria-label="Show more">›</button>
+      </div>
+      <div class="horizontal-cards" id="friends"></div>
+    </section>
+  </main>
+
+  <nav class="mobile-bottom fixed-bottom" aria-label="Main navigation">
+    <a class="selected" href="index.html" data-page-link="home" aria-label="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+    </a>
+    <a href="player.html" data-page-link="playing" aria-label="Now Playing">
+      <svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="3.5"/><circle cx="16.5" cy="16" r="3.5"/></svg>
+    </a>
+    <a href="search.html" data-page-link="search" aria-label="Search">
+      <svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 5 5"/></svg>
+    </a>
+  </nav>
+
   <script src="app.js"></script>
 </body>
 </html>
