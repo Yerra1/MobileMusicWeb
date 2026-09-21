@@ -6,7 +6,15 @@ const tracks = [
   {name:"As It Was", artist:"Harry Styles", cls:"c5"},
   {name:"Heat Waves", artist:"Glass Animals", cls:"c6"},
   {name:"Random music", artist:"Artist & Artist", cls:"c7"},
-  {name:"Certified Lover Boy", artist:"Drake", cls:"c8"}
+  {name:"Certified Lover Boy", artist:"Drake", cls:"c8"},
+  {name:"Starboy", artist:"The Weeknd", cls:"c4"},
+  {name:"Die For You", artist:"The Weeknd", cls:"c7"},
+  {name:"Levitating", artist:"Dua Lipa", cls:"c5"},
+  {name:"One Dance", artist:"Drake", cls:"c3"},
+  {name:"Save Your Tears", artist:"The Weeknd", cls:"c6"},
+  {name:"Bad Habit", artist:"Steve Lacy", cls:"c2"},
+  {name:"Stargazing", artist:"Travis Scott", cls:"c1"},
+  {name:"As You Are", artist:"The Weeknd", cls:"c8"}
 ];
 
 const playlists = ["Cool Music Top 1","Late Night","Friends pack","Focus Mode"];
@@ -42,7 +50,7 @@ function makeCard(track, index){
 }
 
 function fillHome(){
-  const groups = [["hits",[0,1,2]],["newForYou",[0,1,3,4]],["friends",[0,2,4]]];
+  const groups = [["hits",[0,1,2,3,4,5,6,7]],["newForYou",[8,9,10,11,12,13,14,15]],["friends",[0,2,4,6,8,10,12,14]]];
   groups.forEach(([id, ids]) => {
     const box = document.getElementById(id);
     if (!box) return;
