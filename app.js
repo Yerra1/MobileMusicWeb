@@ -1,26 +1,166 @@
-const tracks=[{name:"Damn.",artist:"Kendrick Lamar",cls:"c1"},{name:"Midnights",artist:"Taylor",cls:"c2"},{name:"After Hours",artist:"The Weeknd",cls:"c3"},{name:"Blinding Lights",artist:"The Weeknd",cls:"c4"},{name:"As It Was",artist:"Harry Styles",cls:"c5"},{name:"Heat Waves",artist:"Glass Animals",cls:"c6"},{name:"Random music",artist:"Artist & Artist",cls:"c7"},{name:"Certified Lover Boy",artist:"Drake",cls:"c8"}];
-const playlists=["Cool Music Top 1","Late Night","Friends pack","Focus Mode"];
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];let currentIndex=0,isPlaying=false;
-function setPlayingState(){$('#playBtn').classList.toggle('is-playing',isPlaying);$('#playBtn').setAttribute('aria-label',isPlaying?'Pause':'Play')}
-function card(t,i){const e=document.createElement("div");e.className="music-card";e.innerHTML=`<div class="album-art ${t.cls}"><strong>${t.name}</strong></div><div class="name">${t.name}</div><div class="sub">Play Now</div>`;e.onclick=()=>playTrack(i);return e}
-function fillHome(){[["hits",[0,1,2]],["newForYou",[0,1,3,4]],["friends",[0,2,4]]].forEach(([id,ids])=>ids.forEach(i=>document.getElementById(id).appendChild(card(tracks[i],i))))}
-function fillSearch(){const box=$("#searchResults");tracks.forEach((t,i)=>{const row=document.createElement("div");row.className="result";row.innerHTML=`<div class="result-art album-art ${t.cls}"><strong>${t.name}</strong></div><div><div class="result-name">${t.name}</div><div class="result-sub">Artist & Artist</div></div>`;row.onclick=()=>playTrack(i);box.appendChild(row)})}
-function fillPlaylists(){const box=$("#playlists");playlists.forEach((n,i)=>{const r=document.createElement("div");r.className="playlist";r.innerHTML=`<div class="playlist-art c${i+1}"></div><div>${n}</div>`;r.onclick=()=>playTrack(i%tracks.length);box.appendChild(r)})}
-function navigate(page){document.body.dataset.page=page;$('.page').forEach(p=>p.classList.toggle('active',p.id===page));$$('.mobile-bottom button').forEach(b=>b.classList.toggle('selected',b.dataset.page===page));$$('.side-link').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'})}
-function playTrack(i){currentIndex=(i+tracks.length)%tracks.length;const t=tracks[currentIndex];$('#playerTitle').textContent=t.name;$('#playerArtist').textContent=t.artist;$('#heroArt').className=`hero-art ${t.cls}`;$('#progress').value=0;navigate('playing');isPlaying=true;setPlayingState()}
-function togglePlay(){isPlaying=!isPlaying;setPlayingState()}
-function nextTrack(step=1){playTrack(currentIndex+step)}
-function filterSearch(){const q=$('#searchInput').value.trim().toLowerCase();$$('.result').forEach((r,i)=>r.style.display=!q||`${tracks[i].name} ${tracks[i].artist}`.toLowerCase().includes(q)?'flex':'none')}
-fillHome();fillSearch();fillPlaylists();setPlayingState();
-$$('[data-page]').forEach(b=>b.addEventListener('click',()=>navigate(b.dataset.page)));
-$$('[data-open-search]').forEach(e=>e.addEventListener('click',()=>navigate('search')));
-$('#homeSearch').addEventListener('focus',()=>navigate('search'));$('#playBtn').addEventListener('click',togglePlay);$('#nextBtn').addEventListener('click',()=>nextTrack(1));$('#prevBtn').addEventListener('click',()=>nextTrack(-1));$('#searchInput').addEventListener('input',filterSearch);$('#searchSubmit').addEventListener('click',filterSearch);
-$$('.stem').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('active')));
-document.addEventListener('keydown',e=>{if(e.code==='Space'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();togglePlay()}if(e.code==='ArrowRight')nextTrack(1);if(e.code==='ArrowLeft')nextTrack(-1)});
+const tracks = [
+  {name:"Damn.", artist:"Kendrick Lamar", cls:"c1"},
+  {name:"Midnights", artist:"Taylor Swift", cls:"c2"},
+  {name:"After Hours", artist:"The Weeknd", cls:"c3"},
+  {name:"Blinding Lights", artist:"The Weeknd", cls:"c4"},
+  {name:"As It Was", artist:"Harry Styles", cls:"c5"},
+  {name:"Heat Waves", artist:"Glass Animals", cls:"c6"},
+  {name:"Random music", artist:"Artist & Artist", cls:"c7"},
+  {name:"Certified Lover Boy", artist:"Drake", cls:"c8"}
+];
 
-$$('.section-arrow').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    const box=document.getElementById(btn.dataset.section);
-    if(box) box.scrollBy({left:240,behavior:'smooth'});
+const playlists = ["Cool Music Top 1","Late Night","Friends pack","Focus Mode"];
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function saveTrack(index){
+  localStorage.setItem("selectedTrack", String(index));
+}
+
+function getTrackIndex(){
+  const n = Number(localStorage.getItem("selectedTrack"));
+  return Number.isInteger(n) && n >= 0 && n < tracks.length ? n : 0;
+}
+
+function openTrack(index){
+  saveTrack(index);
+  window.location.href = "player.html";
+}
+
+function makeCard(track, index){
+  const e = document.createElement("article");
+  e.className = "music-card";
+  e.innerHTML = `
+    <button class="album-art ${track.cls}" aria-label="Play ${track.name}">
+      <strong>${track.name}</strong>
+    </button>
+    <div class="name">${track.name}</div>
+    <div class="sub">Play Now</div>
+  `;
+  e.querySelector(".album-art").addEventListener("click", () => openTrack(index));
+  return e;
+}
+
+function fillHome(){
+  const groups = [["hits",[0,1,2]],["newForYou",[0,1,3,4]],["friends",[0,2,4]]];
+  groups.forEach(([id, ids]) => {
+    const box = document.getElementById(id);
+    if (!box) return;
+    ids.forEach(i => box.appendChild(makeCard(tracks[i], i)));
   });
+}
+
+function fillSearch(){
+  const box = $("#searchResults");
+  if (!box) return;
+
+  tracks.forEach((track, index) => {
+    const row = document.createElement("button");
+    row.className = "result";
+    row.innerHTML = `
+      <span class="result-art album-art ${track.cls}"><strong>${track.name}</strong></span>
+      <span class="result-copy">
+        <span class="result-name">${track.name}</span>
+        <span class="result-sub">${track.artist}</span>
+      </span>
+    `;
+    row.addEventListener("click", () => openTrack(index));
+    box.appendChild(row);
+  });
+}
+
+function fillPlaylists(){
+  const box = $("#playlists");
+  if (!box) return;
+
+  playlists.forEach((name, index) => {
+    const row = document.createElement("button");
+    row.className = "playlist";
+    row.innerHTML = `
+      <span class="playlist-art c${index + 1}"></span>
+      <span>${name}</span>
+      <span class="playlist-chevron">›</span>
+    `;
+    row.addEventListener("click", () => openTrack(index % tracks.length));
+    box.appendChild(row);
+  });
+}
+
+function updatePlayer(){
+  const title = $("#playerTitle");
+  const artist = $("#playerArtist");
+  const art = $("#heroArt");
+  if (!title || !artist || !art) return;
+
+  const track = tracks[getTrackIndex()];
+  title.textContent = track.name;
+  artist.textContent = track.artist;
+  art.className = `hero-art ${track.cls}`;
+}
+
+function setPlayingState(){
+  const play = $("#playBtn");
+  if (!play) return;
+  play.classList.toggle("is-playing", !!play.dataset.playing);
+  play.setAttribute("aria-label", play.dataset.playing === "true" ? "Pause" : "Play");
+}
+
+function togglePlay(){
+  const play = $("#playBtn");
+  if (!play) return;
+  play.dataset.playing = play.dataset.playing !== "true" ? "true" : "false";
+  setPlayingState();
+}
+
+function stepTrack(step){
+  const next = (getTrackIndex() + step + tracks.length) % tracks.length;
+  saveTrack(next);
+  window.location.href = "player.html";
+}
+
+function filterSearch(){
+  const input = $("#searchInput");
+  if (!input) return;
+  const q = input.value.trim().toLowerCase();
+  $$(".result").forEach((row, i) => {
+    const t = tracks[i];
+    const haystack = `${t.name} ${t.artist}`.toLowerCase();
+    row.hidden = Boolean(q) && !haystack.includes(q);
+  });
+}
+
+fillHome();
+fillSearch();
+fillPlaylists();
+updatePlayer();
+setPlayingState();
+
+$$(".section-arrow").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const box = document.getElementById(btn.dataset.section);
+    if (box) box.scrollBy({left: 240, behavior: "smooth"});
+  });
+});
+
+$("#searchInput")?.addEventListener("input", filterSearch);
+$("#searchSubmit")?.addEventListener("click", filterSearch);
+$("#playBtn")?.addEventListener("click", togglePlay);
+$("#nextBtn")?.addEventListener("click", () => stepTrack(1));
+$("#prevBtn")?.addEventListener("click", () => stepTrack(-1));
+
+$$(".stem").forEach(button => {
+  button.addEventListener("click", () => button.classList.toggle("active"));
+});
+
+$$("[data-page-link]").forEach(link => {
+  if (link.dataset.pageLink === document.body.dataset.page) link.classList.add("selected");
+});
+
+document.addEventListener("keydown", e => {
+  if (e.code === "Space" && document.activeElement?.tagName !== "INPUT") {
+    e.preventDefault();
+    togglePlay();
+  }
+  if (e.code === "ArrowRight") stepTrack(1);
+  if (e.code === "ArrowLeft") stepTrack(-1);
 });
